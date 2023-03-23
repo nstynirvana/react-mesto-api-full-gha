@@ -1,0 +1,8 @@
+.header__link-push {
+    font-weight: normal;
+    text-decoration: none;
+    color: #fff;
+    text-align: right;
+    align-items: flex-end;
+    display: flex;
+  }
