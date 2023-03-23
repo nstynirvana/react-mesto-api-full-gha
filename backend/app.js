@@ -7,6 +7,7 @@ const { errors } = require('celebrate');
 const routes = require('./routes/index');
 const { handleErrors } = require('./middlewares/handleErrors');
 const NotFoundError = require('./errors/NotFoundError');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Слушаем 3000 порт
 const { PORT = 3001 } = process.env;
@@ -33,7 +34,11 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
+app.use(requestLogger);
+
 app.use(routes);
+
+app.use(errorLogger);
 
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
