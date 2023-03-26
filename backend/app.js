@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const routes = require('./routes/index');
 const { handleErrors } = require('./middlewares/handleErrors');
 const NotFoundError = require('./errors/NotFoundError');
@@ -27,6 +28,8 @@ mongoose.connect(
     });
   },
 );
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname)));
 
