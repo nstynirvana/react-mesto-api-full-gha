@@ -38,16 +38,6 @@ cardRouter.put(
 );
 
 cardRouter.delete(
-  '/:cardId',
-  celebrate({
-    params: Joi.object().keys({
-      cardId: Joi.string().length(24).hex().required(),
-    }),
-  }),
-  deleteCardById,
-);
-
-cardRouter.delete(
   '/:cardId/likes',
   celebrate({
     params: Joi.object().keys({
@@ -55,6 +45,16 @@ cardRouter.delete(
     }),
   }),
   dislikeCard,
+);
+
+cardRouter.delete(
+  '/:cardId',
+  celebrate({
+    params: Joi.object().keys({
+      cardId: Joi.string().length(24).hex().required(),
+    }),
+  }),
+  deleteCardById,
 );
 
 module.exports = cardRouter; // экспортировали роутер

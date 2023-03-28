@@ -33,7 +33,8 @@ class Api {
     };
 
     //проверка токена
-    getContent(token) {
+    getContent() {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._url}/users/me`, {
             method: "GET",
             headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
@@ -44,7 +45,8 @@ class Api {
 }
 
 const auth = new Api({
-    url: 'https://auth.nomoreparties.co',
+    // url: 'https://auth.nomoreparties.co',
+    url: 'http://localhost:3000',
     headers: {
         "Content-Type": "application/json",
     }

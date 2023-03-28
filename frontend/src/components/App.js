@@ -45,7 +45,8 @@ function App() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    api
+    if (isLoggedIn) {
+      api
       .getAllCards()
       .then((cards) => {
         setCards(cards);
@@ -53,23 +54,26 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
+    if (isLoggedIn) {
     api
       .getUserInfo()
       .then((userData) => {
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err));
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     tokenCheck();
   }, []);
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((_id) => _id === currentUser._id);
     if (!isLiked) {
       api
         .setCardLike(card._id)
@@ -242,9 +246,8 @@ function App() {
     if (token) {
       auth
         .getContent(token)
-        .then((data) => data)
-        .then((res) => {
-          handleUserEmail(res.data.email);
+        .then((data) => {
+          handleUserEmail(data.email);
           handleLogin(); //обновлен статус пользователя - зарегистрирован
           navigate("/"); //переадресация на страницу пользователя
         })

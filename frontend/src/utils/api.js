@@ -12,12 +12,19 @@ class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
     };
 
+    _getHeaders() {
+        return {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        };
+      }
+
     //   Получаем все карточки
     getAllCards() {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
-            headers: this._headers
-        })
+            headers: this._getHeaders(),
+    })
             .then(this._checkResponse)
     }
 
@@ -25,7 +32,7 @@ class Api {
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this._headers
+            headers: this._getHeaders(),
         })
             .then(this._checkResponse)
     }
@@ -33,17 +40,16 @@ class Api {
     editUserInfo(info) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: this._getHeaders(),
             body: JSON.stringify(info)
         })
             .then(this._checkResponse)
     }
     // Добавляем новую карточку
     addNewCard(cardInfo) {
-        console.log(cardInfo)
         return fetch(`${this._url}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            headers: this._getHeaders(),
             body: JSON.stringify(cardInfo)
         })
             .then(this._checkResponse)
@@ -53,7 +59,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: "DELETE",
-            headers: this._headers,
+            headers: this._getHeaders(),
         })
             .then(this._checkResponse)
     }
@@ -61,7 +67,7 @@ class Api {
     editUserAvatar({ avatar }) {
         return fetch(`${this._url}/users/me/avatar/`, {
             method: "PATCH",
-            headers: this._headers,
+            headers: this._getHeaders(),
             body: JSON.stringify({ avatar })
         })
             .then(this._checkResponse)
@@ -70,7 +76,7 @@ class Api {
     setCardLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "PUT",
-            headers: this._headers,
+            headers: this._getHeaders(),
         })
             .then(this._checkResponse)
     }
@@ -78,18 +84,14 @@ class Api {
     deleteCardLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "DELETE",
-            headers: this._headers,
+            headers: this._getHeaders(),
         })
             .then(this._checkResponse)
     }
 }
 
 const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-55',
-    headers: {
-        authorization: '58ae7d86-db08-4fdd-a462-6ce6f2e559b5',
-        'content-type': 'application/json'
-    }
+    url: 'http://localhost:3000',
 });
 
 export default api;

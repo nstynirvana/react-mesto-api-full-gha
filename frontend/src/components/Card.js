@@ -16,11 +16,11 @@ function Card(props) {
 
   const currentUserData = React.useContext(CurrentUserContext);
 
-  const isOwn = props.card.owner._id === currentUserData._id;
+  const isOwn = props.card.owner === currentUserData._id;
 
   const cardDeleteButtonClassName = `element__delete-button`;
 
-  const isLiked = props.card.likes.some((i) => i._id === currentUserData._id);
+  const isLiked = props.card.likes.some((_id) => _id === currentUserData._id);
 
   const cardLikeButtonClassName = `element__like-button ${
     isLiked && "element__like-button_active"
