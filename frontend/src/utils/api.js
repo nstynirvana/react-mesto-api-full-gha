@@ -91,7 +91,7 @@ class Api {
 }
 
 const api = new Api({
-    url: 'http://api.projectmesto.savinova.nomoredomains.work/',
+    url: 'http://api.projectmesto.savinova.nomoredomains.work',
 });
 
 export default api;

@@ -45,7 +45,7 @@ class Api {
 }
 
 const auth = new Api({
-    url: 'http://api.projectmesto.savinova.nomoredomains.work/',
+    url: 'http://api.projectmesto.savinova.nomoredomains.work',
     headers: {
         "Content-Type": "application/json",
     }
