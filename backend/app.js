@@ -15,6 +15,8 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+app.use(cors());
+
 mongoose.set('strictQuery', true);
 mongoose.connect(
   'mongodb://127.0.0.1:27017/mestodb',
@@ -28,8 +30,6 @@ mongoose.connect(
     });
   },
 );
-
-app.use(cors());
 
 app.use(express.static(path.join(__dirname)));
 

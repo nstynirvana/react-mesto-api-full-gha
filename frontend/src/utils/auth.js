@@ -45,8 +45,7 @@ class Api {
 }
 
 const auth = new Api({
-    // url: 'https://auth.nomoreparties.co',
-    url: 'http://localhost:3000',
+    url: 'http://api.projectmesto.savinova.nomoredomains.work/',
     headers: {
         "Content-Type": "application/json",
     }
