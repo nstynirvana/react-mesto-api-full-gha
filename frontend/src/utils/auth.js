@@ -16,7 +16,6 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({ email: email, password: password })
         })
@@ -27,7 +26,6 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({ email, password })
         })
@@ -39,16 +37,15 @@ class Api {
         const token = localStorage.getItem('jwt');
         return fetch(`${this._url}/users/me`, {
             method: "GET",
-            credentials: 'include',
             headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
         })
             .then(this._checkResponse)
     }
-
 }
 
 const auth = new Api({
-    url: 'https://api.projectmesto.savinova.nomoredomains.work',
+    url: 'http://api.projectmesto.savinova.nomoredomains.work',
+    // url: 'http://localhost:3000',
     headers: {
         "Content-Type": "application/json",
     }

@@ -1,9 +1,6 @@
 const allowedCors = [
-  'https://projectmesto.savinova.nomoredomains.work',
   'http://projectmesto.savinova.nomoredomains.work',
-  'https://api.projectmesto.savinova.nomoredomains.work',
-  'http://api.projectmesto.savinova.nomoredomains.work',
-  'http://localhost:3000'];
+  'http://localhost:3001'];
 
 const corsOptions = {
   origin: allowedCors,
