@@ -20,19 +20,15 @@ const allowedCors = [
   'http://projectmesto.savinova.nomoredomains.work',
   'https://api.projectmesto.savinova.nomoredomains.work',
   'http://api.projectmesto.savinova.nomoredomains.work',
-  'http://localhost:3000',
-];
+  'http://localhost:3000'];
 
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin: *', origin);
-  }
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
 
-  next();
-});
-
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.set('strictQuery', true);
 mongoose.connect(
