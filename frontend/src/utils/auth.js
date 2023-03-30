@@ -16,6 +16,7 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({ email: email, password: password })
         })
@@ -47,10 +48,7 @@ class Api {
 }
 
 const auth = new Api({
-    url: 'https://api.projectmesto.savinova.nomoredomains.work',
-    headers: {
-        "Content-Type": "application/json",
-    }
+    url: 'http://api.projectmesto.savinova.nomoredomains.work',
 })
 
 export default auth
