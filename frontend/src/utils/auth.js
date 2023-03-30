@@ -1,6 +1,7 @@
 class Api {
     constructor(setting) {
         this._url = setting.url;
+        this._headers = setting.headers;
     }
 
     //метод проверки результата запроса к серверу
@@ -15,10 +16,7 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-              },
+            headers: this._headers,
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
@@ -29,9 +27,7 @@ class Api {
         return fetch(`${this._url}/signin`, {
             method: "POST",
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-              },
+            headers: this._headers,
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
@@ -43,7 +39,7 @@ class Api {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+            headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
         })
             .then(this._checkResponse)
     }
