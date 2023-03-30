@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const corsOptions = require('./middlewares/cors');
 const routes = require('./routes/index');
 const { handleErrors } = require('./middlewares/handleErrors');
 const NotFoundError = require('./errors/NotFoundError');
@@ -14,19 +15,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-
-const allowedCors = [
-  'https://projectmesto.savinova.nomoredomains.work',
-  'http://projectmesto.savinova.nomoredomains.work',
-  'https://api.projectmesto.savinova.nomoredomains.work',
-  'http://api.projectmesto.savinova.nomoredomains.work',
-  'http://localhost:3000'];
-
-const corsOptions = {
-  origin: allowedCors,
-  optionsSuccessStatus: 200,
-  credentials: true,
-};
 
 app.use(cors(corsOptions));
 
