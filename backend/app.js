@@ -15,6 +15,21 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+const allowedCors = [
+  'https://projectmesto.savinova.nomoredomains.work',
+  'http://projectmesto.savinova.nomoredomains.work',
+  'http://localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  next();
+});
+
 app.use(cors());
 
 mongoose.set('strictQuery', true);
