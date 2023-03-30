@@ -23,6 +23,7 @@ class Api {
     getAllCards() {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
+            credentials: 'include',
             headers: this._getHeaders(),
     })
             .then(this._checkResponse)
@@ -32,6 +33,7 @@ class Api {
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
+            credentials: 'include',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse)
@@ -40,6 +42,7 @@ class Api {
     editUserInfo(info) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._getHeaders(),
             body: JSON.stringify(info)
         })
@@ -49,6 +52,7 @@ class Api {
     addNewCard(cardInfo) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
+            credentials: 'include',
             headers: this._getHeaders(),
             body: JSON.stringify(cardInfo)
         })
@@ -59,6 +63,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: "DELETE",
+            credentials: 'include',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse)
@@ -67,6 +72,7 @@ class Api {
     editUserAvatar({ avatar }) {
         return fetch(`${this._url}/users/me/avatar/`, {
             method: "PATCH",
+            credentials: 'include',
             headers: this._getHeaders(),
             body: JSON.stringify({ avatar })
         })
@@ -76,6 +82,7 @@ class Api {
     setCardLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "PUT",
+            credentials: 'include',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse)
@@ -84,6 +91,7 @@ class Api {
     deleteCardLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "DELETE",
+            credentials: 'include',
             headers: this._getHeaders(),
         })
             .then(this._checkResponse)
