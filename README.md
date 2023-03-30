@@ -33,6 +33,6 @@
 
 IP-адрес 158.160.4.155
 
-Frontend http://projectmesto.savinova.nomoredomains.work
+Frontend https://projectmesto.savinova.nomoredomains.work
 
-Backend http://api.projectmesto.savinova.nomoredomains.work
+Backend https://api.projectmesto.savinova.nomoredomains.work
