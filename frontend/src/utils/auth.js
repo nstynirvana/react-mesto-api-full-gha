@@ -1,6 +1,6 @@
 class Api {
     constructor(setting) {
-        this._url = setting.url;
+        this._url = 'https://api.projectmesto.savinova.nomoredomains.work';
     }
 
     //метод проверки результата запроса к серверу
