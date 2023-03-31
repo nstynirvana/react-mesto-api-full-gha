@@ -1,7 +1,6 @@
 class Api {
     constructor(setting) {
         this._url = setting.url;
-        this._headers = setting.headers;
     }
 
     //метод проверки результата запроса к серверу
@@ -16,7 +15,11 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            headers: this._headers,
+            headers: {
+                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
@@ -40,7 +43,12 @@ class Api {
     getContent(token) {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
-            headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
+            headers: {
+                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         })
             .then(this._checkResponse)
     }
