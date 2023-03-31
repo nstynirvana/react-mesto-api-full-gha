@@ -16,7 +16,9 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            headers: 'https://api.projectmesto.savinova.nomoredomains.work',
+            headers: {
+                'Content-Type': 'application/json',
+              },
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
@@ -26,7 +28,9 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            headers: 'https://api.projectmesto.savinova.nomoredomains.work',
+            headers: {
+                'Content-Type': 'application/json',
+              },
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
@@ -37,7 +41,7 @@ class Api {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
             headers: {
-                ...this._headers,
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
