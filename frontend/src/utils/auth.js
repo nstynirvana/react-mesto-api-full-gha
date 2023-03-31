@@ -1,7 +1,7 @@
 class Api {
     constructor(setting) {
         this._url = setting.url;
-        this._headers = 'https://api.projectmesto.savinova.nomoredomains.work';
+        this._headers = setting.url;
     }
 
     //метод проверки результата запроса к серверу
@@ -16,7 +16,7 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            headers: this._headers,
+            headers: 'https://api.projectmesto.savinova.nomoredomains.work',
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
@@ -26,7 +26,7 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            headers: this._headers,
+            headers: 'https://api.projectmesto.savinova.nomoredomains.work',
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
