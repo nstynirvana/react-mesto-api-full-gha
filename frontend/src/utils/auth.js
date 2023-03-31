@@ -16,9 +16,7 @@ class Api {
         return fetch(`${this._url}/signup`, {
             method: "POST",
             headers: {
-                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'origin': 'https://api.projectmesto.savinova.nomoredomains.work',
             },
             body: JSON.stringify({ email: email, password: password })
         })
@@ -30,9 +28,7 @@ class Api {
         return fetch(`${this._url}/signin`, {
             method: "POST",
             headers: {
-                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'origin': 'https://api.projectmesto.savinova.nomoredomains.work',
             },
             body: JSON.stringify({ email, password })
         })
@@ -44,9 +40,7 @@ class Api {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
             headers: {
-                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'origin': 'https://api.projectmesto.savinova.nomoredomains.work',
                 'Authorization': `Bearer ${token}`
             }
         })
