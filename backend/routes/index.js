@@ -7,7 +7,7 @@ const { login, createUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const { validateSchema } = require('../utils/validateSchema');
 
-routes.post('/signin', celebrate({
+routes.post('/sign-in', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
@@ -15,7 +15,7 @@ routes.post('/signin', celebrate({
 }), login);
 
 routes.post(
-  '/signup',
+  '/sign-up',
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().email().required(),
