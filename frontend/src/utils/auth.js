@@ -1,5 +1,5 @@
 class Api {
-    constructor(setting) {
+    constructor() {
         this._url = 'https://api.projectmesto.savinova.nomoredomains.work';
     }
 
@@ -15,7 +15,6 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
         },
