@@ -43,8 +43,6 @@ class Api {
     }
 }
 
-// не сохраняет токен, при обновлении страницы пользователя выбрасывает
-
 const auth = new Api({
     url: 'https://api.projectmesto.savinova.nomoredomains.work',
     // url: 'http://localhost:3000',
