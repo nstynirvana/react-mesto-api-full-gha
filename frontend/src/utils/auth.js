@@ -1,7 +1,7 @@
 class Api {
     constructor(setting) {
         this._url = setting.url;
-        this._headers = setting.url;
+        this._headers = setting.headers;
     }
 
     //метод проверки результата запроса к серверу
@@ -13,39 +13,31 @@ class Api {
     };
 
     //регистрация
-    register(email, password, token) {
+    register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
+            headers: this._headers,
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
     };
 
     //аутентификация
-    authorize(email, password, token) {
+    authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
+            headers: this._headers,
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
     };
 
     //проверка токена
-    getContent(token) {
+    getContent() {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._url}/users/me`, {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
+            headers: { ...this.headers, 'Authorization': `Bearer ${localStorage.getItem(token)}` }
         })
             .then(this._checkResponse)
     }
@@ -54,6 +46,9 @@ class Api {
 const auth = new Api({
     url: 'https://api.projectmesto.savinova.nomoredomains.work',
     // url: 'http://localhost:3000',
+    headers: {
+        "Content-Type": "application/json",
+    }
 })
 
 export default auth
