@@ -26,15 +26,18 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            headers: this._headers,
+            headers: {
+                'Origin': 'https://api.projectmesto.savinova.nomoredomains.work',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
     };
 
     //проверка токена
-    getContent() {
-        const token = localStorage.getItem('jwt');
+    getContent(token) {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
             headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
