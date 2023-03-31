@@ -37,7 +37,7 @@ class Api {
         const token = localStorage.getItem('jwt');
         return fetch(`${this._url}/users/me`, {
             method: "GET",
-            headers: { ...this.headers, 'Authorization': `Bearer ${localStorage.getItem(token)}` }
+            headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
         })
             .then(this._checkResponse)
     }
