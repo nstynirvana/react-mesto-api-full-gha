@@ -13,24 +13,26 @@ class Api {
     };
 
     //регистрация
-    register(email, password) {
-        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/signup`, {
+    register(email, password, token) {
+        return fetch(`${this._url}/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-              },
+                'Authorization': `Bearer ${token}`
+            },
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
     };
 
     //аутентификация
-    authorize(email, password) {
-        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/signin`, {
+    authorize(email, password, token) {
+        return fetch(`${this._url}/signin`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-              },
+                'Authorization': `Bearer ${token}`
+            },
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
@@ -38,7 +40,7 @@ class Api {
 
     //проверка токена
     getContent(token) {
-        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -52,9 +54,6 @@ class Api {
 const auth = new Api({
     url: 'https://api.projectmesto.savinova.nomoredomains.work',
     // url: 'http://localhost:3000',
-    headers: {
-        "Content-Type": "application/json",
-    }
 })
 
 export default auth
