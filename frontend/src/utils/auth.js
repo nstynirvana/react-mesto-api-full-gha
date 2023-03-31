@@ -1,7 +1,6 @@
 class Api {
     constructor(setting) {
         this._url = setting.url;
-        this._headers = setting.headers;
     }
 
     //метод проверки результата запроса к серверу
@@ -16,7 +15,9 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
-            headers: this._headers,
+            headers: {
+                'Content-Type': 'application/json'
+        },
             body: JSON.stringify({ email: email, password: password })
         })
             .then(this._checkResponse)
@@ -26,7 +27,9 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
-            headers: this._headers,
+            headers: {
+                'Content-Type': 'application/json'
+        },
             body: JSON.stringify({ email, password })
         })
             .then(this._checkResponse)
@@ -37,7 +40,7 @@ class Api {
         const token = localStorage.getItem('jwt');
         return fetch(`${this._url}/users/me`, {
             method: "GET",
-            headers: { ...this.headers, 'Authorization': `Bearer ${token}` }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
         })
             .then(this._checkResponse)
     }
@@ -45,10 +48,6 @@ class Api {
 
 const auth = new Api({
     url: 'https://api.projectmesto.savinova.nomoredomains.work',
-    // url: 'http://localhost:3000',
-    headers: {
-        "Content-Type": "application/json",
-    }
 })
 
 export default auth
