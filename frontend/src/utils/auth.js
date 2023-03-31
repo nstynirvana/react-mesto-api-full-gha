@@ -14,7 +14,7 @@ class Api {
 
     //регистрация
     register(email, password) {
-        return fetch(`${this._url}/signup`, {
+        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ class Api {
 
     //аутентификация
     authorize(email, password) {
-        return fetch(`${this._url}/signin`, {
+        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/signin`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ class Api {
 
     //проверка токена
     getContent(token) {
-        return fetch(`${this._url}/users/me`, {
+        return fetch(`https://api.projectmesto.savinova.nomoredomains.work/users/me`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
