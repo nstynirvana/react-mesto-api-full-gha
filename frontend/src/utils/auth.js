@@ -13,7 +13,7 @@ class Api {
 
     //регистрация
     register(email, password) {
-        return fetch(`${this._url}/signup`, {
+        return fetch(`${this._url}/sign-up`, {
             method: "POST",
             headers: {
                 'origin': 'https://api.projectmesto.savinova.nomoredomains.work',
@@ -25,7 +25,7 @@ class Api {
 
     //аутентификация
     authorize(email, password) {
-        return fetch(`${this._url}/signin`, {
+        return fetch(`${this._url}/sign-in`, {
             method: "POST",
             headers: {
                 'origin': 'https://api.projectmesto.savinova.nomoredomains.work',
