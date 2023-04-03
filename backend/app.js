@@ -5,7 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
-// const corsOptions = require('./middlewares/cors');
+const corsOptions = require('./middlewares/cors');
 const routes = require('./routes/index');
 const { handleErrors } = require('./middlewares/handleErrors');
 const NotFoundError = require('./errors/NotFoundError');
@@ -16,7 +16,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors('Access-Control-Allow-Origin: *'));
+app.use(cors(corsOptions));
 
 mongoose.set('strictQuery', true);
 mongoose.connect(
