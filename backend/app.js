@@ -18,21 +18,6 @@ const app = express();
 
 app.use(cors(corsOptions));
 
-mongoose.set('strictQuery', true);
-
-mongoose.connect(
-  'mongodb://localhost:27017/mestodb',
-  {
-    useNewUrlParser: true,
-  },
-  () => {
-    console.log('Connected to MongoDB!');
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
-    });
-  },
-);
-
 app.use(express.static(path.join(__dirname)));
 
 app.use(bodyParser.json());
@@ -58,3 +43,18 @@ app.use((req, res, next) => {
 app.use(errors());
 
 app.use(handleErrors);
+
+mongoose.set('strictQuery', true);
+
+mongoose.connect(
+  'mongodb://localhost:27017/mestodb',
+  {
+    useNewUrlParser: true,
+  },
+  () => {
+    console.log('Connected to MongoDB!');
+    app.listen(PORT, () => {
+      console.log(`App listening on port ${PORT}`);
+    });
+  },
+);
