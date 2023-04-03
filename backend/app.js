@@ -14,6 +14,19 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 
+mongoose.set('strictQuery', true);
+
+mongoose.connect(
+  'mongodb://127.0.0.1:27017/mestodb',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log('Connected to MongoDB!');
+  },
+);
+
 const app = express();
 
 app.use(cors(corsOptions));
@@ -44,17 +57,6 @@ app.use(errors());
 
 app.use(handleErrors);
 
-mongoose.set('strictQuery', true);
-
-mongoose.connect(
-  'mongodb://localhost:27017/mestodb',
-  {
-    useNewUrlParser: true,
-  },
-  () => {
-    console.log('Connected to MongoDB!');
-    app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
-    });
-  },
-);
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
