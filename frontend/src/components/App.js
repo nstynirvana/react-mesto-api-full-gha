@@ -230,7 +230,6 @@ function App() {
           localStorage.setItem("token", data.token); //сохранили токен
           handleUserEmail(email);
           handleLogin();//статус пользователя - зарегистрирован
-          tokenCheck(); 
           navigate("/"); //переадресация на основную страницу
         } else {
           return;
