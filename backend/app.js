@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
@@ -14,22 +15,21 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 
-mongoose.set('strictQuery', true);
-
 const app = express();
 
-async function start() {
-  try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+mongoose.set('strictQuery', true);
+mongoose.connect(
+  'mongodb://127.0.0.1:27017/mestodb',
+  {
+    useNewUrlParser: true,
+  },
+  () => {
+    console.log('Connected to MongoDB!');
     app.listen(PORT, () => {
-      console.log(`App is listening on port ${PORT}`);
+      console.log(`App listening on port ${PORT}`);
     });
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-start();
+  },
+);
 
 app.use(cors(corsOptions));
 

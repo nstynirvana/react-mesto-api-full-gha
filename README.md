@@ -31,7 +31,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.4.155
+IP-адрес 158.160.23.208
 
 Frontend https://projectmesto.savinova.nomoredomains.work
 
