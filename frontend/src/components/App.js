@@ -228,9 +228,10 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);//сохранили токен
-          handleUserEmail(email);
-          handleLogin();//статус пользователя - зарегистрирован
-          navigate("/"); //переадресация на основную страницу
+          // handleUserEmail(email);
+          // handleLogin();//статус пользователя - зарегистрирован
+          // navigate("/"); //переадресация на основную страницу
+          tokenCheck();
         } else {
           return;
         }
@@ -245,7 +246,7 @@ function App() {
     const token = localStorage.getItem("token"); //сохранили токен
     if (token) {
       auth
-        .getContent(token)
+        .checkToken(token)
         .then((data) => {
           handleUserEmail(data.email);
           handleLogin(); //обновлен статус пользователя - зарегистрирован
