@@ -227,10 +227,11 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("token", data.token); //сохранили токен
-          handleUserEmail(email);
-          handleLogin();//статус пользователя - зарегистрирован
-          navigate("/"); //переадресация на основную страницу
+          localStorage.setItem("token", data.token);//сохранили токен
+          tokenCheck(); 
+          // handleUserEmail(email);
+          // handleLogin();//статус пользователя - зарегистрирован
+          // navigate("/"); //переадресация на основную страницу
         } else {
           return;
         }

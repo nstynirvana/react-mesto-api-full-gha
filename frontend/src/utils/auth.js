@@ -48,7 +48,6 @@ class Api {
 
 const auth = new Api({
     url: 'https://api.projectmesto.savinova.nomoredomains.work',
-    // url: 'http://localhost:3000',
 })
 
 export default auth
