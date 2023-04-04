@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
 
     payload = jwt.verify(token, NODE_ENV ? JWT_SECRET : 'super-secret-key');
   } catch (err) {
-    throw new AuthError('Необходима авторизация');
+    next(new AuthError('Необходима авторизация'));
   }
 
   req.user = payload;

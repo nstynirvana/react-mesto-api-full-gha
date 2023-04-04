@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const path = require('path');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
@@ -33,8 +32,6 @@ mongoose.connect(
 
 app.use(cors(corsOptions));
 
-app.use(express.static(path.join(__dirname)));
-
 app.use(bodyParser.json());
 
 app.use(cookieParser());
@@ -49,11 +46,11 @@ app.get('/crash-test', () => {
 
 app.use(routes);
 
-app.use(errorLogger);
-
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 

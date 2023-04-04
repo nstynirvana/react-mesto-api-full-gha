@@ -1,7 +1,6 @@
 class Api {
     constructor() {
         this._url = 'https://api.projectmesto.savinova.nomoredomains.work';
-        // this._url = 'http://localhost:3000';
     }
 
     //метод проверки результата запроса к серверу
