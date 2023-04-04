@@ -228,10 +228,9 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);//сохранили токен
-          tokenCheck(); 
-          // handleUserEmail(email);
-          // handleLogin();//статус пользователя - зарегистрирован
-          // navigate("/"); //переадресация на основную страницу
+          handleUserEmail(email);
+          handleLogin();//статус пользователя - зарегистрирован
+          navigate("/"); //переадресация на основную страницу
         } else {
           return;
         }
