@@ -15,6 +15,7 @@ class Api {
     register(email, password) {
         return fetch(`${this._url}/signup`, {
             method: "POST",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -28,6 +29,7 @@ class Api {
     authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: "POST",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -38,10 +40,10 @@ class Api {
     };
 
     //проверка токена
-    getContent() {
-        const token = localStorage.getItem('jwt');
+    getContent(token) {
         return fetch(`${this._url}/users/me`, {
             method: "GET",
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
         })
             .then(this._checkResponse)
