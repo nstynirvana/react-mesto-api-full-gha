@@ -45,8 +45,7 @@ function App() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (isLoggedIn) {
-      api
+    api
       .getAllCards()
       .then((cards) => {
         setCards(cards);
@@ -54,19 +53,16 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    }
-  }, [isLoggedIn]);
+  }, []);
 
   React.useEffect(() => {
-    if (isLoggedIn) {
     api
       .getUserInfo()
       .then((userData) => {
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err));
-    }
-  }, [isLoggedIn]);
+  }, []);
 
   React.useEffect(() => {
     tokenCheck();
